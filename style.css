@@ -1,0 +1,75 @@
+body {
+    background-color: #004980;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    align-items: center;
+}
+
+.blocks {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 67px;
+}
+
+.difficultySelection {
+    width: 480px;
+    height: 459px;
+    background-color: #C2F5FF;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.styleText {
+    font-family: 'StratosSkyeng';
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    text-align: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #004980;
+    width: 208px;
+    height: 96px;
+    padding-bottom: 48px;
+}
+
+.block1 {
+    background: #FFFFFF;
+    border-radius: 12px;
+    width: 98px;
+    height: 98px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #0080C1;
+    font-family: 'StratosSkyeng';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    display: flex;
+    justify-content: center;
+    user-select: none;
+}
+
+.block1:hover {
+    cursor: pointer;
+    background-color: #dad5d5;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #7AC100;
+    border-radius: 12px;
+    width: 246px;
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+    color: #FFFFFF;
+}
