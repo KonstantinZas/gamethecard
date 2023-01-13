@@ -1,4 +1,0 @@
-{
-    "title": "level",
-    "body": "<div class='difficultySelection'><h1 class='styleText'>Выбери сложность</h1><div class='blocks'><div class='block1 level1'>1</div><div class='block1 level2'>2</div><div class='block1 level3'>3</div></div><button class='button'>Старт</button></div><script src='level.js' type='module'></script>"
-}

@@ -1,8 +1,51 @@
-import levelPage from './level.json' assert { type: 'json' };
-import gamePage from './db.json' assert { type: 'json' };
+// import levelPage from './level.json' assert { type: 'json' };
+// import gamePage from './db.json' assert { type: 'json' };
+
+{/* <div class='difficultySelection'>
+    <h1 class='styleText'>Выбери сложность</h1>
+    <div class='blocks'>
+        <div class='block1 level1'>1</div>
+        <div class='block1 level2'>2</div>
+        <div class='block1 level3'>3</div>
+    </div><button class='button'>Старт</button>
+</div> */}
+
+function layoutLevel() {
+    let difficultySelection = document.createElement("div")
+    difficultySelection.classList.add("difficultySelection")
+    let styleText = document.createElement("h1")
+    styleText.classList.add("styleText")
+    styleText.innerHTML = "Выберите сложность"
+    let blocks = document.createElement("div")
+    blocks.classList.add("blocks")
+    let block1 = document.createElement("div")
+    block1.classList.add("block1", "level1")
+    block1.innerHTML = "1"
+    let block2 = document.createElement("div")
+    block2.classList.add("block1", "level2")
+    block2.innerHTML = "2"
+    let block3 = document.createElement("div")
+    block3.classList.add("block1", "level3")
+    block3.innerHTML = "3"
+    let button = document.createElement("button")
+    button.classList.add("button")
+    button.innerHTML = "Старт"
+
+    difficultySelection.append(styleText)
+    difficultySelection.append(blocks)
+    blocks.append(block1)
+    blocks.append(block2)
+    blocks.append(block3)
+    difficultySelection.append(button)
+    return difficultySelection
+}
+function layoutGame() {
+    let div = document.createElement("div")
+    return div
+}
 let pages = {
-    level: { JSON: levelPage, js: levelScript },
-    game: { JSON: gamePage, js: levelGame }
+    level: { DOM: layoutLevel, js: levelScript },
+    game: { DOM: layoutGame, js: levelGame }
 }
 let complexity
 document.addEventListener("DOMContentLoaded", ready);
@@ -11,7 +54,8 @@ function ready() {
     loadPage(pages.level)
 }
 function loadPage(page) {
-    content.innerHTML = page.JSON.body
+    content.innerHTML = ""
+    content.append(page.DOM())
     page.js()
 }
 function levelScript() {
