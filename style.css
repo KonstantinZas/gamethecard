@@ -15,19 +15,19 @@ body {
 .difficultySelection {
     width: 480px;
     height: 459px;
-    background-color: #C2F5FF;
+    background-color: #c2f5ff;
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
 .styleText {
-    font-family: 'StratosSkyeng';
+    font-family: "StratosSkyeng";
     font-weight: 400;
     font-size: 40px;
     line-height: 48px;
     text-align: center;
-    font-feature-settings: 'pnum' on, 'lnum' on;
+    font-feature-settings: "pnum" on, "lnum" on;
     color: #004980;
     width: 208px;
     height: 96px;
@@ -35,15 +35,15 @@ body {
 }
 
 .block1 {
-    background: #FFFFFF;
+    background: #ffffff;
     border-radius: 12px;
     width: 98px;
     height: 98px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: #0080C1;
-    font-family: 'StratosSkyeng';
+    color: #0080c1;
+    font-family: "StratosSkyeng";
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
@@ -62,7 +62,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #7AC100;
+    background: #7ac100;
     border-radius: 12px;
     width: 246px;
     height: 50px;
@@ -70,94 +70,103 @@ button {
     display: flex;
     align-items: center;
     text-align: center;
-    font-feature-settings: 'pnum' on, 'lnum' on;
-    color: #FFFFFF;
+    font-feature-settings: "pnum" on, "lnum" on;
+    color: #ffffff;
 }
-.cardClosed{
-width: 95px;
-height: 133px;
-left: 26px;
-top: 148px;
-background: #FFFFFF;
-border-radius: 4px;
-background-image: url(image/rub.svg);
-}
-.gameCard{
+
+.gameCard {
     gap: 15px;
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-gap: 1rem;
     margin-top: 35px;
 }
-.timer{
+.timer {
     width: 155px;
     height: 72px;
     left: 22px;
     top: 41px;
-    font-family: 'StratosSkyeng';
+    font-family: "StratosSkyeng";
     font-style: normal;
     font-weight: 400;
     font-size: 64px;
     line-height: 45px;
-    color: #FFFFFF;
+    color: #ffffff;
     margin-right: 583px;
 }
-.minSek{
-height: 32px;
-font-family: 'StratosSkyeng';
-font-style: normal;
-width: 100%;
-font-size: 16px;
-line-height: 32px;
-color: #FFFFFF;
-display: flex;
-gap: 57px;
-margin-left: 38px;
+.minSek {
+    height: 32px;
+    font-family: "StratosSkyeng";
+    font-style: normal;
+    width: 100%;
+    font-size: 16px;
+    line-height: 32px;
+    color: #ffffff;
+    display: flex;
+    gap: 57px;
+    margin-left: 38px;
 }
-.menuGame{
-display: flex;
-justify-content: space-between;
-align-items: flex-end;
+.menuGame {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
 }
-.cardOpen{
+.cardOpen {
     width: 95px;
-height: 133px;
-left: 25px;
-top: 148px;
-background: #FFFFFF;
-border-radius: 4px;
-display: flex;
-justify-content: space-between;
-flex-direction: column;
-padding: 5px 6px;
+    height: 133px;
+    left: 25px;
+    top: 148px;
+    background: #ffffff;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 5px 6px;
 }
-.topCard, .botCard{
-font-family: 'StratosSkyeng';
-font-weight: 400;
-font-size: 24px;
-display: flex;
-align-items: center;
-font-feature-settings: 'pnum' on, 'lnum' on;
-color: #000000;
-display: flex;
-flex-direction: column;
+.cardClosed {
+    width: 95px;
+    height: 133px;
+    left: 26px;
+    top: 148px;
+    background: #ffffff;
+    border-radius: 4px;
+    background: url(image/rub.svg);
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
 }
-.topCard img, .botCard img{
+.cardClosed > * {
+    display: none !important;
+}
+.topCard,
+.botCard {
+    font-family: "StratosSkyeng";
+    font-weight: 400;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    font-feature-settings: "pnum" on, "lnum" on;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+}
+.topCard img,
+.botCard img {
     width: 6.97px;
     height: 6px;
-    margin-left: 4px ;
+    margin-left: 4px;
 }
-.botCard{
+.botCard {
     transform: rotate(180deg);
     display: flex;
     align-items: flex-start;
 }
-.topCard{
+.topCard {
     display: flex;
     align-items: flex-start;
 }
-.midCard{
-display: flex;
-align-items: center;
-justify-content: center;
+.midCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
