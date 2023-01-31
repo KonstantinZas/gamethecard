@@ -1,4 +1,5 @@
 body {
+    margin: 0;
     background-color: #004980;
     display: flex;
     justify-content: center;
@@ -167,6 +168,74 @@ button {
 }
 .midCard {
     display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.resultContener {
+    background: rgba(0, 73, 128, 0.9);
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.result {
+    width: 480px;
+    height: 459px;
+    left: 272px;
+    top: 158px;
+    background: #c2f5ff;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.resultContent > img {
+    width: 96px;
+    height: 96px;
+}
+.resultContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.elapsedTime {
+    font-family: "StratosSkyeng";
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 32px;
+    color: #000000;
+    margin: 0;
+    margin-bottom: 10px;
+}
+.time {
+    font-family: "StratosSkyeng";
+    font-weight: 400;
+    font-size: 64px;
+    line-height: 72px;
+    color: #000000;
+    margin: 0;
+}
+.resultText {
+    width: 256px;
+    height: 48px;
+    font-family: "StratosSkyeng";
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 48px;
+    color: #004980;
+    margin: 0;
+    margin-bottom: 28px;
+    text-align: center;
+}
+.elapsedTimeBlock {
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }

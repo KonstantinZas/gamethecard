@@ -1,3 +1,4 @@
+console.log("Жэпа");
 function layoutLevel() {
     let difficultySelection = document.createElement("div");
     difficultySelection.classList.add("difficultySelection");
@@ -41,10 +42,15 @@ function layoutGame() {
     spanMinSek.innerHTML = "min";
     let spanMinSek2 = document.createElement("span");
     spanMinSek2.innerHTML = "sek";
+    let realTimer = document.createElement("div");
+    realTimer.classList.add("realTimer");
     let buttonDiv = document.createElement("div");
     buttonDiv.classList.add("button");
     let button = document.createElement("button");
     button.innerHTML = "Начать заново";
+    button.onclick = () => {
+        loadPage(pages.level);
+    };
     let gameCard = document.createElement("div");
     gameCard.classList.add("gameCard");
 
@@ -56,49 +62,102 @@ function layoutGame() {
     timer.append(minSek);
     minSek.append(spanMinSek);
     minSek.append(spanMinSek2);
-    timer.append("00:00");
+    timer.append(realTimer);
     return theCard;
+}
+function timeFromTheStarToTheGame() {
+    endTime = new Date();
+    let minut: any = "" + new Date(endTime - startTime).getMinutes();
+    if ((minut + "").length <= 1) {
+        minut = "0" + minut;
+    }
+    let sekund: string = new Date(endTime - startTime).getSeconds() + "";
+    if ((sekund + "").length <= 1) {
+        sekund = "0" + sekund;
+    }
+    return minut + "." + sekund;
+}
+function renderResultGame(total: string) {
+    let resultContener = document.createElement("div");
+    resultContener.classList.add("resultContener");
+    let result = document.createElement("div");
+    result.classList.add("result");
+    let resultContent = document.createElement("div");
+    resultContent.classList.add("resultContent");
+    let img = document.createElement("img");
+    img.src = `image/${total}.svg`;
+    let resultText = document.createElement("h1");
+    resultText.classList.add("resultText");
+    resultText.innerHTML = total === "win" ? "Вы выиграли!" : "Вы проиграли!";
+    let elapsedTimeBlock = document.createElement("div");
+    elapsedTimeBlock.classList.add("elapsedTimeBlock");
+    let elapsedTime = document.createElement("h2");
+    elapsedTime.classList.add("elapsedTime");
+    elapsedTime.innerHTML = "Затраченное время:";
+    let time = document.createElement("h1");
+    time.classList.add("time");
+    time.innerHTML = timeFromTheStarToTheGame();
+    let button = document.createElement("button");
+    button.classList.add("button");
+    button.innerHTML = "Играть снова";
+    button.onclick = () => {
+        loadPage(pages.level);
+    };
+
+    resultContener.append(result);
+    result.append(resultContent);
+    resultContent.append(img);
+    resultContent.append(resultText);
+    resultContent.append(elapsedTimeBlock);
+    elapsedTimeBlock.append(elapsedTime);
+    elapsedTimeBlock.append(time);
+    resultContent.append(button);
+    content.append(resultContener);
 }
 let pages = {
     level: { DOM: layoutLevel, js: levelScript },
     game: { DOM: layoutGame, js: gameScript },
 };
-let complexity;
+let complexity: number;
 document.addEventListener("DOMContentLoaded", ready);
-let content = document.querySelector(".content");
+let content: any = document.querySelector(".content");
 function ready() {
     loadPage(pages.level);
 }
-function loadPage(page) {
+function loadPage(page: any) {
     content.innerHTML = "";
     content.append(page.DOM());
     page.js();
 }
 function levelScript() {
-    let level1 = document.querySelector(".level1");
-    let level2 = document.querySelector(".level2");
-    let level3 = document.querySelector(".level3");
-    let button = document.querySelector(".button");
+    let level1: any = document.querySelector(".level1");
+    let level2: any = document.querySelector(".level2");
+    let level3: any = document.querySelector(".level3");
+    let button: any = document.querySelector(".button");
     button.onclick = function () {
         loadPage(pages.game);
     };
     level1.onclick = function () {
         complexity = 1;
-        console.log(complexity);
     };
     level2.onclick = function () {
         complexity = 2;
-        console.log(complexity);
     };
     level3.onclick = function () {
         complexity = 3;
-        console.log(complexity);
     };
 }
 
 let winsCount = 0;
+let startTime: any = 0;
+let endTime: any;
 function gameScript() {
-    let cardForGame = [];
+    let timer: any = document.querySelector(".realTimer");
+    function onlineTimer() {
+        timer.innerHTML = timeFromTheStarToTheGame();
+    }
+    winsCount = 0;
+    let cardForGame: string[] = [];
     const deck = [
         "pA",
         "pK",
@@ -139,37 +198,35 @@ function gameScript() {
     ];
     let copyDeck = [...deck];
     rundomDeck(complexity * 3);
-    function rundomDeck(count) {
+    function rundomDeck(count: number) {
         for (let i = 0; i < count; i++) {
             let a = getRandomInt(copyDeck["length"]);
             let randomCard = copyDeck.splice(a, 1)[0];
             cardForGame[i] = randomCard;
             cardForGame[count + i] = randomCard;
         }
-        console.log(cardForGame);
     }
     shuffle(cardForGame);
-    console.log(cardForGame);
     let numberLastCard = "";
-    let elementLastCard = "";
-    function clickCard(el, card) {
+    let elementLastCard: any;
+    function clickCard(el: any, card: any) {
         if (!el.classList.contains("cardClosed")) return;
         el.classList.remove("cardClosed");
-        console.log(el, card);
         if (numberLastCard === "") {
             numberLastCard = card;
             elementLastCard = el;
         } else {
             if (numberLastCard === card) {
                 winsCount++;
-                console.log(winsCount);
                 if (winsCount === complexity * 3) {
-                    alert("Вы выиграли");
+                    endTime = new Date();
+                    renderResultGame("win");
                 }
                 elementLastCard.style.display = "none";
                 el.style.display = "none";
             } else {
-                alert("вы проиграли");
+                endTime = new Date();
+                renderResultGame("lose");
             }
             let copyLastCard = elementLastCard;
             let timerClosed = setTimeout(() => {
@@ -181,12 +238,11 @@ function gameScript() {
         }
     }
 
-    function drawCards(cards) {
+    function drawCards(cards: any) {
         for (let card in cards) {
             let suit = cards[card][0];
             let number = cards[card].substring(1);
-            console.log(suit, number);
-            let gameCard = document.querySelector(".gameCard");
+            let gameCard: any = document.querySelector(".gameCard");
             let cardOpen = document.createElement("div");
             cardOpen.classList.add("cardOpen");
             let topCard = document.createElement("div");
@@ -213,19 +269,23 @@ function gameScript() {
             botCard.append(imgBot);
             gameCard.append(cardOpen);
             let timerClosed = setTimeout(() => {
+                startTime = new Date();
                 cardOpen.classList.add("cardClosed");
             }, 5000);
             cardOpen.onclick = () => {
                 clickCard(cardOpen, cards[card]);
             };
         }
+        let timerCloseder = setTimeout(() => {
+            let timerStartGame = setInterval(onlineTimer, 1000);
+        }, 5000);
     }
     drawCards(cardForGame);
 }
-function shuffle(array) {
+function shuffle(array: any) {
     array.sort(() => Math.random() - 0.5);
 }
 
-function getRandomInt(max) {
+function getRandomInt(max: any) {
     return Math.floor(Math.random() * max);
 }
